@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-dashboard
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+spec:
+  rules:
+  - host: dashboard.scdf.asc-test.net
+    http:
+      paths:       
+      - path: /
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: scdf-server
+            namespace: default
+            port: 
+              number: 8080
